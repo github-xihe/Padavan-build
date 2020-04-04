@@ -11,8 +11,8 @@ on:
 #    - master
 #  schedule:
 #    - cron: 0 8 * * 5
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 jobs:
   build:
@@ -22,6 +22,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
+    
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -30,11 +31,13 @@ jobs:
         sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
         cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev gcc-multilib
+    
     - name: Clone source code
       run: |
         git clone --depth=1 https://github.com/hanwckf/rt-n56u.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
+    
     - name: Build Firmware
       env:
         TNAME: K2P_nano-5.0
@@ -44,6 +47,7 @@ jobs:
         sudo ./build_firmware_modify $TNAME
         mkdir -p /opt/images/
         sudo mv -f images/*.trx /opt/images/
+    
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
