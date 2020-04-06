@@ -1,5 +1,5 @@
 #修改TNAME: K2P-5.0 中的K2P-5.0为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
-name: Build Padavan
+name: Build Padavan K2P_nano-5.0
 
 on: 
 #  release:
@@ -9,10 +9,10 @@ on:
 #    - 'v*'
 #  branches: 
 #    - master
-#  schedule:
-#    - cron: 0 8 * * 5
-  watch:
-    types: [started]
+  schedule:
+    - cron: 0 8 * * 7
+#  watch:
+#    types: [started]
 
 jobs:
   build:
@@ -40,8 +40,7 @@ jobs:
     
     - name: Build Firmware
       env:
- #       TNAME: K2P_nano-5.0
-        TNAME: PSG1218_nano
+        TNAME: K2P_nano-5.0
       run: |
         cd /opt/rt-n56u/trunk
         sudo ./clear_tree
