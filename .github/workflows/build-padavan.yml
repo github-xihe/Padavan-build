@@ -2,8 +2,8 @@
 name: Build Padavan
 
 on: 
-  release:
-    types: [published]
+#  release:
+#   types: [published]
 #  push:
 #    tags:
 #    - 'v*'
@@ -11,8 +11,8 @@ on:
 #    - master
 #  schedule:
 #    - cron: 0 8 * * 5
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 jobs:
   build:
@@ -40,7 +40,8 @@ jobs:
     
     - name: Build Firmware
       env:
-        TNAME: K2P_nano-5.0
+ #       TNAME: K2P_nano-5.0
+        TNAME: PSG1218_nano
       run: |
         cd /opt/rt-n56u/trunk
         sudo ./clear_tree
