@@ -4,8 +4,8 @@ name: Build Padavan K2P_nano-5.0
 on: 
   schedule:
     - cron: 0 8 * * 7
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 jobs:
   build:
